@@ -1,0 +1,14 @@
+---
+
+- name: Include call_rdrct.yml
+  include: call_rdrct.yml
+  
+- name: sip.conf
+  include: sip.conf.yml
+
+- name: extensions.conf
+  include: extensions.conf.yml
+  
+- name: Sound on dial tone
+  include: sound_on_dial_tone.yml
+

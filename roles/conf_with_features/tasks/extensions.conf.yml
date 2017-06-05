@@ -1,0 +1,5 @@
+---
+
+- name: Templating extensions.conf
+  template: src=/etc/ansible/roles/conf_with_features/templates/extensions.conf.j2 dest=/etc/asterisk/extensions.conf
+  notify: Change extensions.conf

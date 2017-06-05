@@ -1,0 +1,20 @@
+- name: Change features.conf for call_redirecting
+  ini_file: 
+    dest: "/etc/asterisk/features.conf"
+    section: "{{ item.section }}" 
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  with_items:
+   - { section: "general", option: "atxfernoanswertimeout", value: "15"}
+   - { section: "general", option: "atxferdropcall", value: "no"}
+   - { section: "general", option: "atxferloopdelay", value: "10"}
+   - { section: "general", option: "atxfercallbackretries", value: "2"}
+  notify: Change features.conf
+  
+- name: Change 'atxfer' line for call_redirecting
+  replace: 
+    dest: "/etc/asterisk/features.conf"
+    regexp: ".atxfer.=>..2"
+    replace: "atxfer => *2"
+
+

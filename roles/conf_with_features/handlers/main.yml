@@ -1,0 +1,12 @@
+---
+- name: Change sip.conf 
+  sudo: yes
+  command: asterisk -rx "core reload"
+
+- name: Change extensions.conf
+  sudo: yes
+  command: asterisk -rx "core reload"
+
+- name: Change features.conf 
+  sudo: yes
+  command: asterisk -rx "core reload"

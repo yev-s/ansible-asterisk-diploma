@@ -1,0 +1,18 @@
+
+[incoming]
+exten => _X.,1,Goto(menu,s,1)
+
+[outcoling]
+exten => _XXXXXXXXXXX,1,Dial(SIP/zadarma/${EXTEN})
+exten => _XXXX,1,Dial(SIP/${EXTEN},,m)
+exten => 7777,1,Goto(menu,s,1)
+exten => 800,1,AgentLogin()
+
+[menu]
+exten => s,1,Background(/var/lib/asterisk/moh/voicemail/voicemenu)
+exten => 1,1,Dial(SIP/1001,,m)
+;exten => 2,1,Dial(SIP/1002,,m)
+exten => s,5,Queue(operators,,,,100)
+exten => s,n,Wait(5)
+exten => s,n,Dial(SIP/1001&SIP/1002,,m)
+

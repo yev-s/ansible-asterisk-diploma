@@ -1,0 +1,7 @@
+---
+
+- name: Templating sip.conf
+  template: src=/etc/ansible/roles/conf_with_features/templates/sip.conf.j2 dest=/etc/asterisk/sip.conf
+  with_items: 
+     conf_with_features
+  notify: Change sip.conf

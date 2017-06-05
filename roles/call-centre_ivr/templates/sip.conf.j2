@@ -1,0 +1,31 @@
+[{{ item.user1_number }}]
+type={{ item.type }}
+regexten={{ item.regexten }}
+secret={{ item.secret }}
+context={{ item.context }}
+host={{ item.host }}
+callerid={{ item.callerid }}
+disallow={{ item.disallow }}
+allow={{ item.allow1 }}
+allow={{ item.allow2 }}
+language={{ item.language }}
+callgroup={{ item.callgroup }}
+pickgroup={{ item.pickgroup }}
+qualify={{ item.qualify }}
+canreinvite={{ item.canreinvite }}
+call_limit={{ item.call_limit }}
+nat={{ item.nat }}
+
+{% for others in item.other %}
+
+[{{ others.user_number }}]
+type={{ others.type }}
+host={{ others.host }}
+insecure={{ others.insecure }}
+username={{ others.username }}
+secret={{ others.secret }}
+context={{ others.context }}
+disallow={{ others.disallow }}
+allow={{ others.allow }}
+
+{% endfor %}

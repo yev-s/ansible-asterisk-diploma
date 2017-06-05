@@ -1,0 +1,25 @@
+---
+
+- name: Create directory for sound_on_dial_tone file
+  sudo: yes
+  file: path=/var/lib/asterisk/moh/mymusic state=directory
+  
+- name: Copy *.wav file to Asterisk
+  sudo: yes
+  copy:
+    src: /etc/ansible/roles/conf_with_features/sound_on_dial_tone/sound_on_dial_tone.wav
+    dest: /var/lib/asterisk/moh/mymusic
+        
+- name: Convert *.wav to *.ulaw
+  sudo: yes
+  command: asterisk -rx "file convert /var/lib/asterisk/moh/mymusic/sound_on_dial_tone.wav dial_tone.ulaw"
+  
+- name: Change musiconhold.conf
+  ini_file: 
+    dest: "/etc/asterisk/musiconhold.conf"
+    section: "default" 
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  with_items:
+   - { option: "directory", value: "moh/mymusic"}
+  notify: Change musiconhold.conf

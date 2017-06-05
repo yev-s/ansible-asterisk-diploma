@@ -1,0 +1,17 @@
+
+[general]
+persistentmembers = yes
+monitor-type = MixMonitor
+
+[operators]
+music = default
+strategy = ringall
+context = queue-out
+autofill = yes
+announce-position = limit
+wrapuptime=50
+announce-frequency = 30
+announce-holdtime = yes
+joinempty = yes
+member => Agent/1001
+member => Agent/1002

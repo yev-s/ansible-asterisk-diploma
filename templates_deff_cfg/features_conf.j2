@@ -1,0 +1,11 @@
+;Configuring file features.conf
+
+atxfernoanswertimeout = 15     ; Timeout for answer on attended transfer default is 15 seconds.
+atxferdropcall = no            ; If someone does an attended transfer, then hangs up before the transfer
+                                ; target answers, then by default, the system will try to call back the
+                                ; person that did the transfer.  If this is set to "yes", the ringing
+                                ; transfer target is immediately transferred to the transferee.
+atxferloopdelay = 10           ; Number of seconds to sleep between retries (if atxferdropcall = no)
+atxfercallbackretries = 2      ; Number of times to attempt to send the call back to the transferer.
+
+atxfer => *2                   ; Attended transfer  -- Make sure to set the T and/or t option in the Dial() or Queue()  app call!

@@ -1,0 +1,33 @@
+---
+
+- name: Create directory for voicemenu file
+  sudo: yes
+  file: path=/var/lib/asterisk/moh/voicemail state=directory
+
+- name: Copy *.wav file to Asterisk
+  sudo: yes
+  copy:
+    src: /etc/ansible/roles/call-centre_ivr/wav_file_for_ivr/voice.wav
+    dest: /var/lib/asterisk/moh/voicemail
+    
+- name: Convert *.wav to *.ulaw
+  sudo: yes
+  command: asterisk -rx "file convert /var/lib/asterisk/moh/voicemail/voice.wav voicemenu.ulaw"
+  
+- name: Check/generate sip.conf
+  template: src=/etc/ansible/roles/call-centre_ivr/templates/sip.conf.j2 dest=/etc/asterisk/sip.conf_test
+  with_items: 
+     asterisk
+  notify: Changes are occurred
+
+- name: Check/generate extensions.conf
+  template: src=/etc/ansible/roles/call-centre_ivr/templates/extensions.conf.j2 dest=/etc/asterisk/extensions.conf_test
+  notify: Changes are occurred
+  
+- name: Check/generate queues.conf
+  template: src=/etc/ansible/roles/call-centre_ivr/templates/queues.conf.j2 dest=/etc/asterisk/queues.conf
+  notify: Changes are occurred
+  
+- name: Check/generate agents.conf
+  template: src=/etc/ansible/roles/call-centre_ivr/templates/agents.conf.j2 dest=/etc/asterisk/agents.conf
+  notify: Changes are occurred

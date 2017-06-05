@@ -1,0 +1,7 @@
+;Config for extensions.conf on asterisk
+
+[outcoling]
+exten=>_XXXXXXXXXXXX,1,Dial(SIP/zadarma/${EXTEN})
+exten=>_XXXX,1,Dial(SIP/${EXTEN},,t&m,)
+[incoming]
+exten=>_X.,1,Dial(SIP/1001&SIP/1002,60,m,tT)

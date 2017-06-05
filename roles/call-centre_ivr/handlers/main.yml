@@ -1,0 +1,5 @@
+---
+
+- name: Changes are occurred
+  sudo: yes
+  command: asterisk -rx "core reload"

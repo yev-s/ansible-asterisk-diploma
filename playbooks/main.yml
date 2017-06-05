@@ -1,0 +1,4 @@
+---
+- hosts: asterisk
+  roles:
+  - name: conf_with_features

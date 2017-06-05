@@ -1,0 +1,45 @@
+;Config for sip.conf
+
+[1001]
+type=friend
+regexten=1001
+secret=1234
+context=outcoling
+host=dynamic
+callerid="1001"<1001>
+disallow=all
+allow=alaw
+allow=ulaw
+language=ru
+callgroup=1
+pickgroup=1
+qualify=yes
+canreinvite=yes
+call-limit=4
+nat=no
+
+[1002]
+type=friend
+host=dynamic
+insecure=invite
+username=1002
+secret=45678
+context=outcoling
+disallow=all
+allow=alaw
+
+   - { option: "regexten", value: "{{ type }}" }
+   - { option: "secret", value: "{{ regexten }}" }
+   - { option: "context", value: "{{ secret }}" }
+   - { option: "host", value: "{{ context }}" }
+   - { option: "callerid", value: "{{ host }}" }
+   - { option: "disallow", value: "{{ callerid }}" }
+   - { option: "allow", value: "{{ disallow }}" }
+   - { option: "allow", value: "{{ allow1 }}" }
+   - { option: "language", value: "{{ language }}" }
+   - { option: "callgroup", value: "{{ callgroup }}" }
+   - { option: "pickgroup", value: "{{ pickgroup }}" }
+   - { option: "qualify", value: "{{ qualify }}" }
+   - { option: "canreinvite", value: "{{ canreinvite }}" }
+   - { option: "call-limit", value: "{{ call-limit }}" }
+   - { option: "nat", value: "{{ nat }}" }
